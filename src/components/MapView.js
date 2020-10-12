@@ -10,7 +10,7 @@ import EventMarker from './EventMarker'
 import MarkerClusterGroup from "react-leaflet-markercluster"
 
 
-const MapView = (props) => {
+const MapView = ({ currentLocation, events, range }) => {
   const [zoom, setZoom] = React.useState(12)
 
   const iconMarkup = renderToStaticMarkup(
@@ -25,7 +25,7 @@ const MapView = (props) => {
   })
 
   return (
-    <Map center={props.currentLocation} zoom={zoom}>
+    <Map center={currentLocation} zoom={zoom}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
@@ -33,17 +33,17 @@ const MapView = (props) => {
       <Marker
         key={1}
         position={[
-          props.currentLocation.lat,
-          props.currentLocation.lng
+          currentLocation.lat,
+          currentLocation.lng
         ]}
         icon={customMarkerIcon}
       />
       <MarkerClusterGroup>
-        {props.events.map((event, i) => 
-          <EventMarker event={event} key={i} currentLocation={props.currentLocation} />
+        {events.map((event, i) => 
+          <EventMarker event={event} key={i} currentLocation={currentLocation} />
         )}
       </MarkerClusterGroup>
-      <Circle center={[props.currentLocation.lat, props.currentLocation.lng]} radius={props.range * 1000} />
+      <Circle center={[currentLocation.lat, currentLocation.lng]} radius={range * 1000} />
     </Map>
   )
 }
