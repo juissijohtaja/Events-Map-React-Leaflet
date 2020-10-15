@@ -61,18 +61,18 @@ const App = () => {
         <Container className='pt-3 bg-light'>
           {!loading && currentLocation.lat && currentLocation.lng && events.length > 0
             ? <div>
-              <p>We found {events.length} events within {range} km of your current location.</p>
+              <p>Löysimme {events.length} tapahtumaa {range} km:n säteellä tämän hetkisestä sijainnistasi.</p>
               <Form>
                 <Form.Group id="formBasicRange">
                   <Form.Label>
                     <Badge pill variant="info">
-                      Longitude: {(currentLocation.lng).toFixed(2)}
+                      Lon: {(currentLocation.lng).toFixed(2)}
                     </Badge>{' '}
                     <Badge pill variant="info">
-                      Latitude: {(currentLocation.lat).toFixed(2)}
+                      Lat: {(currentLocation.lat).toFixed(2)}
                     </Badge>{' '}
                     <Badge pill variant="info">
-                      Range: {range}
+                      Säde: {range}
                     </Badge>
                   </Form.Label>
                   <Form.Control type="range" id="Range" min="1" max="10" step="1" onChange={handleRangeSliderChange} value={range} />
