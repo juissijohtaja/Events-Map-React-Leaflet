@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import MapView from './components/MapView'
 import EventsView from './components/EventsView'
+import NavbarMain from './components/NavbarMain'
 import axios from 'axios'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Spinner } from 'react-bootstrap'
+import { Container, Spinner, Form, Badge, Navbar } from 'react-bootstrap'
 import L from 'leaflet'
 
 
@@ -45,25 +46,51 @@ const App = () => {
       })
     }
   }, [range])
+
+  const handleRangeSliderChange = (event) => {
+    console.log('slider', event.target.value)
+    setLoading(true)
+    setRange(event.target.value)
+  }
   
   return (
-    <Container className='pt-4 bg-light'>
-      <div className="App">
-        <h1>Event map</h1>
-        <div>
-          {currentLocation.lat && currentLocation.lng && events.length > 0
+    
+    <div className="App">
+      <NavbarMain />
+      <div>
+        <Container className='pt-3 bg-light'>
+          {!loading && currentLocation.lat && currentLocation.lng && events.length > 0
             ? <div>
+              <p>We found {events.length} events within {range} km of your current location.</p>
+              <Form>
+                <Form.Group id="formBasicRange">
+                  <Form.Label>
+                    <Badge pill variant="info">
+                      Longitude: {(currentLocation.lng).toFixed(2)}
+                    </Badge>{' '}
+                    <Badge pill variant="info">
+                      Latitude: {(currentLocation.lat).toFixed(2)}
+                    </Badge>{' '}
+                    <Badge pill variant="info">
+                      Range: {range}
+                    </Badge>
+                  </Form.Label>
+                  <Form.Control type="range" id="Range" min="1" max="10" step="1" onChange={handleRangeSliderChange} value={range} />
+                </Form.Group>
+              </Form>
               <MapView currentLocation={currentLocation} events={events} range={range} />
               <EventsView events={events} />
             </div>
             : 
-            <Spinner animation="border" role="status">
-              <span className="sr-only">Getting your position and loading events...</span>
-            </Spinner>
+            <Container className='d-flex justify-content-center py-5'>
+              <Spinner animation="border" role="status">
+                <span className="sr-only">Getting your position and loading events...</span>
+              </Spinner>
+            </Container>
           }
-        </div>
+        </Container>
       </div>
-    </Container>
+    </div>
   )
 }
 

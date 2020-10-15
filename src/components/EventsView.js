@@ -6,7 +6,7 @@ const EventsView = ({ events }) => {
   console.log('EventsView', events)
   
   return (
-    <Table striped bordered hover>
+    <Table responsive>
       <thead>
         <tr>
           <th>Tapahtuma</th>
