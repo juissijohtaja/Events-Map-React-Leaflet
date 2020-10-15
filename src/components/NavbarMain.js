@@ -11,7 +11,7 @@ const NavbarMain = () => {
           name="map-signs"
           style={{ color: 'rgb(250,250,250)', marginRight: '10px' }}
         />
-        Helsinki Event Map
+        Helsinki Tapahtumakartta
       </Navbar.Brand>
     </Navbar>
   )
