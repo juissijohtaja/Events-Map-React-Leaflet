@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import MapView from './components/MapView'
 import EventsView from './components/EventsView'
 import NavbarMain from './components/NavbarMain'
 import axios from 'axios'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Spinner, Form, Badge, Navbar } from 'react-bootstrap'
+import { Container, Spinner, Form, Badge } from 'react-bootstrap'
 import L from 'leaflet'
 
 const App = () => {
