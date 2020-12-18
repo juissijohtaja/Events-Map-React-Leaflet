@@ -8,22 +8,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Spinner, Form, Badge, Navbar } from 'react-bootstrap'
 import L from 'leaflet'
 
-
 const App = () => {
   const [currentLocation, setCurrentLocation] = React.useState({ lat: null, lng: null  })
   const [events, setEvents] = React.useState([])
   const [range, setRange] = React.useState(2)
   const [loading, setLoading] = React.useState(true)
   const limit = 1000
-
-  /* useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        console.log('my position', position.coords)
-        setCurrentLocation({ lat: position.coords.latitude, lng: position.coords.longitude })
-      })
-    }
-  }, []) */
 
   useEffect(() => {
     if (navigator.geolocation) {
